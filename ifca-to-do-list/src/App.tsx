@@ -16,6 +16,12 @@ function App() {
 
   {/*Add new item to array when button is clicked*/}
   const handleClick = () =>{
+    {/*Check if same name already exist */}
+    const checkSameItem = item.some((todo) => todo.text.toLowerCase() === input.toLowerCase());
+    if(checkSameItem === true){
+      alert("Task with same name already exist!");
+      return;
+    }
     const newItem: list = {id: Date.now(), text:input, completed: false};
     setItem([...item,newItem]);
   }
@@ -42,14 +48,14 @@ function App() {
         <ul>
           {item.map((todo) => {
             return(
-            <li key={todo.id} onClick={() => toggleCompleted(todo.id)} style={{textDecoration: todo.completed ? "line-through" : "none"}}>
+            <li className='item-list' key={todo.id} onClick={() => toggleCompleted(todo.id)} style={{textDecoration: todo.completed ? "line-through" : "none"}}>
               {todo.text}
             </li>)
           })}
         </ul>
-        {item.length == 0 ? '' : (item.length > 1 ? <p>{completedItems.length}/{item.length} items completed!</p> : <p>{completedItems.length}/{item.length} item completed!</p>)}
-        
-        
+        {item.length == 0 ? '' : 
+          (item.length > 1 ? <p>{completedItems.length}/{item.length} items completed!</p> : 
+            <p>{completedItems.length}/{item.length} item completed!</p>)}
     </>
     </>
   )

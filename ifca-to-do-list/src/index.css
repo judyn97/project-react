@@ -26,3 +26,14 @@ h1 {
   line-height: 1.1;
 }
 
+.item-list{
+  list-style: none;
+  background-color: #4a4848;
+  margin: 5px;
+  padding: 5px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
