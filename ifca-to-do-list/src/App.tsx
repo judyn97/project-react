@@ -11,11 +11,28 @@ function App() {
   const [item, setItem] = useState<list[]>([]);
   const [input, setInput] = useState("");
 
+  {/*Store completed items in new array*/}
+  const completedItems = item.filter((todo) => todo.completed === true);
+
   {/*Add new item to array when button is clicked*/}
   const handleClick = () =>{
     const newItem: list = {id: Date.now(), text:input, completed: false};
     setItem([...item,newItem]);
   }
+
+  {/*Toggle complete status when list is clicked*/}
+  const toggleCompleted = (id: number) =>{
+    setItem(
+      item.map((todo) => {
+        if(todo.id === id){
+          return {...todo, completed: !todo.completed};
+        }
+        return todo;
+      })
+    )
+  }
+
+  
   return (
     <>
       <>
@@ -24,9 +41,15 @@ function App() {
         <button className="add-button" onClick={handleClick}> Add </button>
         <ul>
           {item.map((todo) => {
-            return(<li key={todo.id}>{todo.text}</li>)
+            return(
+            <li key={todo.id} onClick={() => toggleCompleted(todo.id)} style={{textDecoration: todo.completed ? "line-through" : "none"}}>
+              {todo.text}
+            </li>)
           })}
         </ul>
+        {item.length == 0 ? '' : (item.length > 1 ? <p>{completedItems.length}/{item.length} items completed!</p> : <p>{completedItems.length}/{item.length} item completed!</p>)}
+        
+        
     </>
     </>
   )
