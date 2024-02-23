@@ -40,24 +40,25 @@ function App() {
 
   
   return (
-    <>
-      <>
+    <div className='container'>
         <h1>To Do List</h1>
         <input className="input-item" type='text' placeholder='Add item to the list..' onChange={(e) => setInput(e.currentTarget.value)}></input>
         <button className="add-button" onClick={handleClick}> Add </button>
-        <ul>
+        <ul className='container-todo'>
           {item.map((todo) => {
             return(
-            <li className='item-list' key={todo.id} onClick={() => toggleCompleted(todo.id)} style={{textDecoration: todo.completed ? "line-through" : "none"}}>
-              {todo.text}
-            </li>)
+            <div className='list-container'>
+              <li className='item-list' key={todo.id}  style={{textDecoration: todo.completed ? "line-through" : "none"}}>
+                <input className='complete-button' type='checkbox' onChange={() => toggleCompleted(todo.id)}></input>
+                {todo.text}
+              </li>
+            </div>)
           })}
         </ul>
         {item.length == 0 ? '' : 
           (item.length > 1 ? <p>{completedItems.length}/{item.length} items completed!</p> : 
             <p>{completedItems.length}/{item.length} item completed!</p>)}
-    </>
-    </>
+    </div>
   )
 }
 
