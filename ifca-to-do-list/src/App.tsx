@@ -71,10 +71,3 @@ function App() {
 }
 
 export default App
-
-{/*Remaining implementation:
-1. Add delete todo list or mark as done or both
-2. Make cannot display same item twice ?
-3. Display total list at bottom ?
-4. Style to make it responsive
-*/}

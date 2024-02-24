@@ -83,7 +83,7 @@ h1 {
 }
 
 .delete-button{
-  margin-left: 20px;
+  margin-right: 2px;
   padding: 5px;
   cursor: pointer;
   background-color: #242424;
