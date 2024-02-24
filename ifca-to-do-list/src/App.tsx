@@ -26,6 +26,11 @@ function App() {
     setItem([...item,newItem]);
   }
 
+  {/*Delete item from array when button is clicked*/}
+  const handleDelete = (id: number) =>{
+    setItem(item.filter((todo) => todo.id !== id));
+  }
+
   {/*Toggle complete status when list is clicked*/}
   const toggleCompleted = (id: number) =>{
     setItem(
@@ -51,6 +56,9 @@ function App() {
               <li className='item-list' key={todo.id}  style={{textDecoration: todo.completed ? "line-through" : "none"}}>
                 <input className='complete-button' type='checkbox' onChange={() => toggleCompleted(todo.id)}></input>
                 {todo.text}
+                <button className='delete-button' onClick={() => handleDelete(todo.id)}> 
+                  <img className='delete-image' src='./public/delete.png'></img>
+                </button>
               </li>
             </div>)
           })}
